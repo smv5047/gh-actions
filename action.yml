@@ -1,26 +1,27 @@
 # The name of the workflow
-    name: build
+    name: Image Accesibility Reviewer
     # What conditions trigger the workflow
     #  In this case, all pushes and pull requests
+    description: github action to check if all images have non-empty alt tags
     on: [push, pull_request]
     # The jobs that will be run, usually in parallel
+    branding:
+      icon: 'image'
+      color: 'blue'
     jobs:
-      # A job to generate and publish code coverage
-      coverage:
-        # A more descriptive name of the job
-        name: Test and publish test coverage
-        # The OS on which the job will run
-        runs-on: ubuntu-latest
-        # The steps for the job, executed in sequence
-        steps:
-          # A GitHub action for checking out the current branch
-          - uses: actions/checkout@master
-          # A GitHub action to setup Node.js
-          - uses: actions/setup-node@master
-            with:
-              node-version: "12"
-            # Run the NPM install command before proceeding
-          - run: npm install
-          # A GitHub action for running tests and publishing coverage
-          # - uses: paambaati/codeclimate-action@v2.4.0
-          #   env:
+      
+
+name: 'Image Accesibility Reviewer'
+description: 'Check if image have non-empt alt tags'
+on: [push, pull_request]
+inputs:
+  who-to-greet:  # id of input
+    description: 'Who to greet'
+    required: true
+    default: 'World'
+outputs:
+  time: # id of output
+    description: 'The time we greeted you'
+runs:
+  using: 'node12'
+  main: 'index.js'
